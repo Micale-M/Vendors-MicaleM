@@ -41,4 +41,13 @@ public class VendorTest {
         }
     }
 
+    @Test
+    void restockTest(){
+        Vending none = new Vending(0,0);
+        none.restock(5);
+        for(String e: none.getStockNames()){
+            assertEquals(5, none.getStock(e));
+        }
+    }
+
 }

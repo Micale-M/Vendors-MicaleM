@@ -64,6 +64,14 @@ class Vending {
          return Stock.keySet();
     }
 
+    void restock(int num){
+        for(String e: this.getStockNames()){
+            if(Stock.get(e).stock == 0){
+                Stock.get(e).stock =+num;
+            }
+        }
+    }
+
 
 
 }
