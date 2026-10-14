@@ -91,8 +91,16 @@ class Vending {
         Stock.put(itemName, new Item(price, amount));
     }
 
-}
+    void changeName(String oldItem, String newItem ){
+        if(Stock.containsKey(oldItem)){
+        Item i = Stock.remove(oldItem);
+        Stock.put(newItem, i);
+    }
 
-class Examples {
-}
+
+
+}}
+
+//class Examples {
+//}
 

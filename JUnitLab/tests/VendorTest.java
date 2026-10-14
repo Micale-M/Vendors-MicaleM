@@ -1,9 +1,11 @@
 //import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class VendorTest {
 
@@ -58,6 +60,16 @@ public class VendorTest {
        int currentIven = two.getStockNames().size();
         two.restock(5);
         assertEquals(currentIven + 1, two.getStockNames().size());
+    }
+
+    @Test
+    void itemRenameTest(){
+        Set<String> oldNames = new HashSet<>( vend.getStockNames());
+        vend.changeName("Candy", "Gumball");
+
+        boolean actual = oldNames.equals(vend.getStockNames());
+        assertEquals(oldNames.size(), vend.getStockNames().size());
+        assertEquals(false, actual);
     }
 
 }
