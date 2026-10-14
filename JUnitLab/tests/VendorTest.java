@@ -1,6 +1,8 @@
 //import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VendorTest {
@@ -48,6 +50,14 @@ public class VendorTest {
         for(String e: none.getStockNames()){
             assertEquals(5, none.getStock(e));
         }
+    }
+
+    @Test
+    void newItemTest(){
+        Vending two = new Vending(0,0);
+       int currentIven = two.getStockNames().size();
+        two.restock(5);
+        assertEquals(currentIven + 1, two.getStockNames().size());
     }
 
 }

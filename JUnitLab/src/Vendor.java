@@ -1,5 +1,6 @@
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Set;
 
 
@@ -10,11 +11,14 @@ import java.util.Set;
 class Vending {
     private static HashMap<String, Item> Stock = new HashMap<String,Item>();
     private double balance;
+    private String[] listOfOtherItems;
 
     Vending(int numCandy, int numGum) {
         Stock.put("Candy", new Item(1.25, numCandy));
         Stock.put("Gum", new Item(.5, numGum));
         this.balance = 0;
+
+        listOfOtherItems = new String[]{"Chocolate", "Chips", "Drinks"};
     }
 
     /** resets the Balance to 0 */
@@ -65,14 +69,27 @@ class Vending {
     }
 
     void restock(int num){
+        Random gen = new Random();
+        int count = 0;
+
         for(String e: this.getStockNames()){
             if(Stock.get(e).stock == 0){
                 Stock.get(e).stock = num;
+                        count++;
+                }
             }
+        if(count > 0){
+            String name = listOfOtherItems[gen.nextInt(listOfOtherItems.length)];
+            if(Stock.containsKey(name)){
+            } else {
+                this.addItem(name, 5, 5);
+        }
         }
     }
 
-
+    void addItem(String itemName, double price, int amount){
+        Stock.put(itemName, new Item(price, amount));
+    }
 
 }
 
