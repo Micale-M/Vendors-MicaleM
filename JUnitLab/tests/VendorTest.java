@@ -1,4 +1,4 @@
-import org.junit.jupiter.api.BeforeAll;
+//import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -35,7 +35,7 @@ public class VendorTest {
         poor.addMoney(100);
         for(String e: poor.getStockNames()){
             for (int i = poor.getStock(e); i >= 0 ; i--) {
-                poor.select(e.toString());
+                poor.select(e);
             }
             assertEquals(0, poor.getStock(e) );
         }
