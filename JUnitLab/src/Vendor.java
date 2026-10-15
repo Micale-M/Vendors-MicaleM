@@ -9,7 +9,8 @@ class Vending {
     private HashMap<String, Item> Stock = new HashMap<String, Item>();
     private double balance;
     private String[] listOfOtherItems;
-    private static HashMap<String, Integer> Tracker = new HashMap<String, Integer>();
+    private static HashMap<String, Integer> Tracker = new HashMap<String, Integer>(); //Item and number of times purchased
+    private ArrayList<String> mostPurchased = new ArrayList<>();
 
     Vending(int numCandy, int numGum) {
         Stock.put("Candy", new Item(1.25, numCandy));
@@ -79,6 +80,13 @@ class Vending {
             return Stock.get(name).price;
         }
         return 0;
+    }
+
+    boolean isbestSeller(String name) {
+        if (Stock.containsKey(name)) {
+            return Stock.get(name).bestSeller;
+        }
+        return false;
     }
 
     Set<String> getStockNames() {
@@ -163,7 +171,7 @@ class Vending {
         }
     }
 
-    void setDiscount(String item, int num){
+    void setDiscount(String item, double num){
         if (Stock.containsKey(item) && ((num>= 0) &&(num<=100))) {
             int stock = Stock.get(item).stock;
             double discount = 1.0-(num/100.0);
@@ -171,6 +179,63 @@ class Vending {
             Stock.replace(item, new Item(price, stock));
         }
     }
+
+    void bestSeller(){
+        if(Tracker.isEmpty()){
+            return;
+        }
+        int maxValue = 0;
+//        ArrayList<String> mostPurchased = new ArrayList<>();
+        for (String e: Tracker.keySet()){
+            int value = Tracker.get(e);
+            if(value > maxValue){
+                maxValue = value;
+                mostPurchased.clear();
+                mostPurchased.add(e);
+            } else if (value == maxValue) {
+                mostPurchased.add(e);
+            }
+        }
+        for (String s : mostPurchased) {
+            for (String k : Tracker.keySet()) {
+                if (k.equals(s)) {
+                    Stock.get(k).setBestSellerTrue();
+                } else {
+                    Stock.get(k).setBestSellerFalse();
+                }
+            }
+
+        }
+
+        if(!mostPurchased.isEmpty()){
+            if(mostPurchased.size()>1) {
+                System.out.println("The best selling items are the following:");
+            } else if (mostPurchased.size()==1) {
+                System.out.println("The best selling item is:");
+            } else if (mostPurchased.size()==0) {
+                System.out.println("No items have been purchased");
+                return;
+            }
+            for(String e: mostPurchased){
+                System.out.println(e);
+            }
+        }
+    }
+
+    void printBestSellers(){
+        if(!mostPurchased.isEmpty()){
+            if(mostPurchased.size()>1) {
+                System.out.println("The best selling items are the following:");
+            } else if (mostPurchased.size()==1) {
+                System.out.println("The best selling item is:");
+            } else if (mostPurchased.size()==0) {
+                System.out.println("No items have been purchased");
+                return;
+            }
+            for(String e: mostPurchased){
+            System.out.println(e);
+        }
+    }}
 
 }
 

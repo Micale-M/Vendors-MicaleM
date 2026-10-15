@@ -17,6 +17,13 @@ class Item {
         return description;
     }
 
+    void setBestSellerTrue(){
+        bestSeller = true;
+    }
+
+    void setBestSellerFalse(){
+        bestSeller = false;
+    }
 
     void restock(int amount) {
         this.stock = this.stock + amount;

@@ -131,5 +131,27 @@ public class VendorTest {
         assertEquals(80, vend.getPrice("Ham"));
     }
 
+    @Test
+    void bestSellerTest(){
+        Vending rich = new Vending(5,5);
+        rich.addMoney(1000);
+        rich.addItem("Peanuts", 23, 6);
+        rich.addItem("Crackers", 12, 70);
+        rich.addItem("Cookies", 10, 15);
+        rich.bestSeller();
+        for (int i = 0; i < 4; i++) {
+            rich.select("Cookies");
+        }
+        rich.bestSeller();
+        for (int i = 0; i < 4; i++) {
+            rich.select("Peanuts");
+        }
+        rich.bestSeller();
+        for (int i = 0; i < 20; i++) {
+            rich.select("Crackers");
+        }
+        rich.bestSeller();
+        rich.printBestSellers();
+    }
 
 }
