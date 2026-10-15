@@ -106,6 +106,12 @@ class Vending {
 
         }
 
+        void removeItem(String item){
+            if (Stock.containsKey(item)) {
+                Stock.remove(item);
+            }
+        }
+
 }
 
 

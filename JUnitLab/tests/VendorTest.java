@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class VendorTest {
 
@@ -70,7 +69,7 @@ public class VendorTest {
 
         boolean actual = oldNames.equals(vend.getStockNames());
         assertEquals(oldNames.size(), vend.getStockNames().size());
-        assertEquals(false, actual);
+        assertFalse(actual);
     }
 
     @Test
@@ -89,6 +88,16 @@ public class VendorTest {
             h.printIven();
             f++;
         }
+    }
+
+    @Test
+    void removeItemTest(){
+        Set<String> oldNames = new HashSet<>( vend.getStockNames());
+        vend.removeItem("Gum");
+
+        boolean actual = oldNames.equals(vend.getStockNames());
+        assertEquals(oldNames.size()-1, vend.getStockNames().size());
+        assertFalse(actual);
     }
 
 
