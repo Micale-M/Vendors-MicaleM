@@ -74,6 +74,13 @@ class Vending {
         return 0;
     }
 
+    double getPrice(String name) {
+        if (Stock.containsKey(name)) {
+            return Stock.get(name).price;
+        }
+        return 0;
+    }
+
     Set<String> getStockNames() {
         return Stock.keySet();
     }
@@ -150,10 +157,18 @@ class Vending {
         }
     }
 
-
     void setDescription(String item, String desc){
         if (Stock.containsKey(item)){
             Stock.get(item).setDescription(desc);
+        }
+    }
+
+    void setDiscount(String item, int num){
+        if (Stock.containsKey(item) && ((num>= 0) &&(num<=100))) {
+            int stock = Stock.get(item).stock;
+            double discount = 1.0-(num/100.0);
+            double price = ((Stock.get(item).price)*(discount));
+            Stock.replace(item, new Item(price, stock));
         }
     }
 

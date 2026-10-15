@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -120,7 +121,14 @@ public class VendorTest {
         vend.getDescription("Juice", "y");
         vend.getDescription("Juice", "Y");
         vend.getDescription("Dragon", "y");
+    }
 
+    @Test
+    void discountTest(){
+        vend.addItem("Ham", 100,4);
+        double original = vend.getPrice("Ham");
+        vend.setDiscount("Ham", 20);
+        assertEquals(80, vend.getPrice("Ham"));
     }
 
 
