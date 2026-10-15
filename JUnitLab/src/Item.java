@@ -13,6 +13,10 @@ class Item {
         description = desc;
     }
 
+    String getDescription(){
+        return description;
+    }
+
 
     void restock(int amount) {
         this.stock = this.stock + amount;

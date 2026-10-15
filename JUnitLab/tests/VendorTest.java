@@ -109,5 +109,19 @@ public class VendorTest {
         vend.printPurchaseHistory();
     }
 
+    @Test
+    void descriptionTest(){
+        trackerTest();
+        vend.getDescription("Juice", "y");
+        vend.setDescription("Juice", "A sweet drink.");
+        vend.getDescription("Juice", "no");
+        vend.getDescription("Juice", "Yes");
+        vend.getDescription("Juice", "yes");
+        vend.getDescription("Juice", "y");
+        vend.getDescription("Juice", "Y");
+        vend.getDescription("Dragon", "y");
+
+    }
+
 
 }
