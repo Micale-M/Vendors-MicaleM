@@ -12,6 +12,7 @@ class Vending {
     private HashMap<String, Item> Stock = new HashMap<String,Item>();
     private double balance;
     private String[] listOfOtherItems;
+    private static HashMap<String, Integer> Tracker = new HashMap<String, Integer>();
 
     Vending(int numCandy, int numGum) {
         Stock.put("Candy", new Item(1.25, numCandy));
@@ -49,6 +50,12 @@ class Vending {
             if ((balance >= item.price) && (item.stock > 0)) {
                 item.purchase(1);
                 this.balance = this.balance - item.price;
+
+                if(Tracker.containsKey(name)){
+                    Tracker.replace(name, Tracker.get(name)+1);
+                } else{
+                    Tracker.put(name, 1);
+                }
                 //Stock.replace(name, new Item(item.price, item.stock-1));
             }
             else
@@ -74,7 +81,7 @@ class Vending {
 
         for(String e: this.getStockNames()){
             if(Stock.get(e).stock == 0){
-                Stock.get(e).stock = num;
+                Stock.get(e).restock(num);// = num;
                         count++;
                 }
             }
@@ -110,6 +117,17 @@ class Vending {
             if (Stock.containsKey(item)) {
                 Stock.remove(item);
             }
+        }
+
+        void printPurchaseHistory(){
+        System.out.println("Item:Times Purchased");
+        if(Tracker.isEmpty()){
+            System.out.println("No items have been purchased yet");
+            return;
+        }
+        for (String e: Tracker.keySet()){
+            System.out.println(e + ":" + Tracker.get(e));
+        }
         }
 
 }

@@ -100,5 +100,14 @@ public class VendorTest {
         assertFalse(actual);
     }
 
+    @Test
+    void trackerTest(){
+        vend.addItem("Juice", 1, 3);
+        vend.addMoney(12);
+        vend.printPurchaseHistory();
+        vend.select("Juice");
+        vend.printPurchaseHistory();
+    }
+
 
 }
