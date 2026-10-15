@@ -9,7 +9,7 @@ import java.util.Set;
  * well as the current balance of money that has been deposited into the machine.
  */
 class Vending {
-    private static HashMap<String, Item> Stock = new HashMap<String,Item>();
+    private HashMap<String, Item> Stock = new HashMap<String,Item>();
     private double balance;
     private String[] listOfOtherItems;
 
@@ -91,15 +91,23 @@ class Vending {
         Stock.put(itemName, new Item(price, amount));
     }
 
-    void changeName(String oldItem, String newItem ){
-        if(Stock.containsKey(oldItem)){
-        Item i = Stock.remove(oldItem);
-        Stock.put(newItem, i);
+    void changeName(String oldItem, String newItem ) {
+        if (Stock.containsKey(oldItem)) {
+            Item i = Stock.remove(oldItem);
+            Stock.put(newItem, i);
+        }
     }
 
+    void printIven(){
+            System.out.println("Item:Stock");
+            for(String e: this.getStockNames()){
+                System.out.println(e + ":" + this.getStock(e));
+            }
 
+        }
 
-}}
+}
+
 
 //class Examples {
 //}

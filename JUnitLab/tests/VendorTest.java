@@ -1,6 +1,7 @@
 //import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -71,5 +72,24 @@ public class VendorTest {
         assertEquals(oldNames.size(), vend.getStockNames().size());
         assertEquals(false, actual);
     }
+
+    @Test
+    void printIvenTest(){
+        ArrayList<Vending> vendorSystem = new ArrayList<>();
+        for (int i = 0; i < 6 ; i++) {
+            //Vending name = new Vending(i,i);
+            //name.printIven();
+            vendorSystem.add(new Vending(i,i));
+        }
+        int f = 1;
+        for(Vending h: vendorSystem){
+//            int f = 1;
+            System.out.println("Vendor " + f);
+
+            h.printIven();
+            f++;
+        }
+    }
+
 
 }
